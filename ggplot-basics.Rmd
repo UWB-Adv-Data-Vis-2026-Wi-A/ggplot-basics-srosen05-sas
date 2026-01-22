@@ -69,6 +69,16 @@ p + geom_point(mapping = aes(color = continent)) +
 ```{r esoph-load}
 data(esoph) # loads the dataset into your environment
 glimpse(esoph)
+```
+```{r esoph-summarize}
+esoph_by_alc <- esoph %>%
+  group_by(alcgp) %>%
+  summarise(
+    total_cases = sum(ncases),
+    .groups = "drop"
+  )
+
+esoph_by_alc
 
 ```
 

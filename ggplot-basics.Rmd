@@ -57,6 +57,10 @@ p + geom_point() +
   geom_smooth(method = "loess") +
   scale_x_log10()
 
+p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
 ```
 
 

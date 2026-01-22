@@ -27,6 +27,10 @@ p + geom_point() +
 p + geompoint() +
   geom_smooth(method = "gam") +
   scale_x_log10 (labels = scales::dollar)
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method ="gam") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(x = "GDP Per Capita", y = "Life Expectancy in Years", title = "Economic Growth and Life Expectancy", subtitle = "Data points are country-years", caption = "source: Gapminder.")
 
 
 ```

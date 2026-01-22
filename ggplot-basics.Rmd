@@ -79,7 +79,13 @@ esoph_by_alc <- esoph %>%
   )
 
 esoph_by_alc
+```
+```{r esoph-plot}
+ggplot(esoph_by_alc, aes(x = alcgp, y = total_cases)) +
+  geom_col()
+
 
 ```
+
 
 

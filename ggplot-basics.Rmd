@@ -24,7 +24,7 @@ p + geom_point() + geom_smooth(method = "lm")
 p + geom_point() +
   geom_smooth(method = "gam") +
   scale_x_log10()
-p + geompoint() +
+p + geom_point() +
   geom_smooth(method = "gam") +
   scale_x_log10 (labels = scales::dollar)
 p + geom_point(alpha = 0.3) +

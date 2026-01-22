@@ -19,9 +19,8 @@ Here you will make your figure. You can write a commit for each figure or error 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
-p + geom_point(mapping = aes(color = log(pop))) +
-  geom_smooth(method = "loess") +
-  scale_x_log10()
+p + geom_point() + geom_smooth(method = "lm")
+
 
 ```
 

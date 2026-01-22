@@ -1,13 +1,13 @@
 ---
 title: "Overview of basic features of ggplot"
-author: "Caleb Trujillo"
-date: "`r Sys.Date()`"
+author: "Sarah Rosen"
+date: "1/21/2026"
 output: html_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-pacman::p_load(tidyverse,nycflights13,gapminder,socviz)
+pacman::p_load(tidyverse,nycflights13,gapminder,socviz, datasets)
 ```
 
 ### Figure 3.13
@@ -19,7 +19,19 @@ Here you will make your figure. You can write a commit for each figure or error 
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp))
-p + geom_point() 
+p + geom_point() + geom_smooth()
+p + geom_point() + geom_smooth(method = "lm")
+p + geom_point() +
+  geom_smooth(method = "gam") +
+  scale_x_log10()
+p + geom_point() +
+  geom_smooth(method = "gam") +
+  scale_x_log10 (labels = scales::dollar)
+p + geom_point(alpha = 0.3) +
+  geom_smooth(method ="gam") +
+  scale_x_log10(labels = scales::dollar) +
+  labs(x = "GDP Per Capita", y = "Life Expectancy in Years", title = "Economic Growth and Life Expectancy", subtitle = "Data points are country-years", caption = "source: Gapminder.")
+
 
 ```
 
@@ -31,16 +43,52 @@ Here you will make your next figure.
 p <- ggplot(data = gapminder,
             mapping = aes(x = gdpPercap,
                           y = lifeExp,
+                          color = continent))
+p + geom_smooth() +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
+
+p <- ggplot(data = gapminder,
+            mapping = aes(x = gdpPercap,
+                          y = lifeExp,
                           color = continent,
-                          fill = lifeExp))
-p + geom_smooth()
+                          fill = continent))
+p + geom_point() +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
+
+p <- ggplot(data = gapminder, mapping = aes(x = gdpPercap, y = lifeExp))
+p + geom_point(mapping = aes(color = continent)) +
+  geom_smooth(method = "loess") +
+  scale_x_log10()
 ```
 
 
 ### Orignal graph
 
-Continue practicing by accessing an unfamiliar data set from another package.
-You can load a dataset of your choice to show you can build a graphic using ggplot layers.
-Here are some sample data sets [https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html](https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/00Index.html)
+```{r esoph-load}
+data(esoph) # loads the dataset into your environment
+glimpse(esoph)
+```
+```{r esoph-summarize}
+esoph_by_alc <- esoph %>%
+  group_by(alcgp) %>%
+  summarise(
+    total_cases = sum(ncases),
+    .groups = "drop"
+  )
+
+esoph_by_alc
+```
+```{r esoph-plot}
+ggplot(esoph_by_alc, aes(x = alcgp, y = total_cases)) +
+  geom_col() +
+  labs(
+    title = "Total Esophagael Cancer Cases by Alcohol Consumption Group",
+    x = "Alcohol consumption group",
+    y = "Total cases"
+  )
+```
+
 
 

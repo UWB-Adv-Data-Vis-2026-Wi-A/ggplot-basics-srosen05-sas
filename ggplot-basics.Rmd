@@ -88,7 +88,6 @@ ggplot(esoph_by_alc, aes(x = alcgp, y = total_cases)) +
     x = "Alcohol consumption group",
     y = "Total cases"
   )
-
 ```
 
 

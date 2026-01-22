@@ -21,6 +21,9 @@ p <- ggplot(data = gapminder,
                           y = lifeExp))
 p + geom_point() + geom_smooth()
 p + geom_point() + geom_smooth(method = "lm")
+p + geompoint() +
+  geom_smooth(method = "gam") +
+  scale_x_logo10()
 
 
 

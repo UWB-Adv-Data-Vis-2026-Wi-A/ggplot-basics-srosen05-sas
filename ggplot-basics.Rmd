@@ -66,5 +66,10 @@ p + geom_point(mapping = aes(color = continent)) +
 
 ### Orignal graph
 
+```{r esoph-load}
+data(esoph) # loads the dataset into your environment
+glimpse(esoph)
+
+```
 
 
